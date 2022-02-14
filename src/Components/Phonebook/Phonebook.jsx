@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import { useState, Component } from "react";
 import { nanoid } from 'nanoid';
 import AddContacts from "./AddContacts/AddContacts";
-import FormRender from "./FormRender/FormRender";
+// import FormRender from "./FormRender/FormRender";
 import Search from "./Search/Search";
 import PropTypes from "prop-types";
 
@@ -77,7 +77,7 @@ formSubmitHandler = ({ name, number }) => {
     const handleSearch = this.handleSearch;
     return (
       <>
-        <FormRender onSubmit={formSubmitHandler} />
+        <FormRender onSubmit={formSubmitHandler}/>
         <Search onChange={handleSearch} />
         <AddContacts
           contacts={filtredContacts}
@@ -100,4 +100,68 @@ Phonebook.propTypes = {
     })
   ),
   filter: PropTypes.string,
+};
+
+// ===============================================FormRender==============================================================
+
+function FormRender () {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [id, setId] = useState("");
+
+  const handleChangeName = (event) => {
+    const nameInput = event.currentTarget.value;
+    return setName((name) => nameInput);
+  };
+
+  const handleChangeNumber = (event) => {
+    const numberInput = event.currentTarget.value;
+    return setNumber((number) => numberInput);
+  };
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleSubmit(setName, setNumber);
+    formReset();
+  };
+
+  const formReset = () => {
+    setName("");
+    setNumber("");
+  };
+    return (
+      <>
+        <h2>Add contact</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Имя
+            <input
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              value={name}
+              onChange={handleChangeName}
+              required
+            />
+          </label>
+          <label>
+            Телефон
+            <input
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              value={number}
+              onChange={handleChangeNumber}
+              required
+            />
+          </label>
+          <button type="submit">Add to phonebook</button>
+        </form>
+      </>
+    );
+  }
+FormRender.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

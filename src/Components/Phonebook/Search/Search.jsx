@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Search ({onChange}) {
+export default function Search ({onChange}) {
     return (
       <form>
         <h2> Your contacts </h2>
@@ -19,8 +19,6 @@ function Search ({onChange}) {
       </form>
     );
   }
-
-export default Search;
 
 Search.propTypes = {
   onChange: PropTypes.func.isRequired,
