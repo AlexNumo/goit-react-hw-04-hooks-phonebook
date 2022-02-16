@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Search ({onChange}) {
+export default function Search ({onSubmit}) {
     return (
       <form>
         <h2> Your contacts </h2>
@@ -12,14 +12,14 @@ export default function Search ({onChange}) {
             name="filter"
             title="Name search. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            onChange={onChange}
-            required
+            onChange={onSubmit}
+            // required
           />
         </label>
       </form>
     );
   }
 
-Search.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
+// Search.propTypes = {
+//   onChange: PropTypes.func.isRequired,
+// };
