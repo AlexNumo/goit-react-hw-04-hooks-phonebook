@@ -1,22 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types'
 
-const Contact = ({ id, name, number, changeId }) => {
-  return (
-    <li key={id}>
-      <p>
-        {name}: <span>{number}</span>
-      </p>
-      <button type="button" id={id} onClick={changeId}>
-        Удалить
-      </button>
-    </li>
-  );
+const Contact = ({name, number}) => {
+    return (
+        <>
+          <p>
+            <span>{name}: </span>
+            <span>{number}</span>
+          </p>
+        </>
+    );
 };
+
 export default Contact;
 
 Contact.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  number: PropTypes.string,
-};
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired
+
+}

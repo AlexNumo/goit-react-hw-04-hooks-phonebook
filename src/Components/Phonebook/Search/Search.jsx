@@ -1,25 +1,24 @@
-import React from "react";
+import React from 'react';
 import PropTypes from "prop-types";
 
-export default function Search ({onSubmit}) {
-    return (
-      <form>
-        <h2> Your contacts </h2>
-        <label>
-          Найти контакт по имени
-          <input
-            type="text"
-            name="filter"
-            title="Name search. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            onChange={onSubmit}
-            // required
-          />
-        </label>
-      </form>
-    );
-  }
+const Search = ({value, onChange}) => {
+  return (
+    <div>
+      <input 
+        type='text'
+        name='filter'
+        onChange={onChange}
+        value={value} // значение = вводимые символы в инпуте
+      />
+    </div>
 
-// Search.propTypes = {
-//   onChange: PropTypes.func.isRequired,
-// };
+  );
+
+}
+
+Search.propTypes = {
+    value: PropTypes.node.isRequired,
+    onChange: PropTypes.func.isRequired
+}
+
+export default Search;

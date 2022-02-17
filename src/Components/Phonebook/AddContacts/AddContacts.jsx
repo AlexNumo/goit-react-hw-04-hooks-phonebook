@@ -1,32 +1,31 @@
-import React from "react";
-import PropTypes, { shape } from "prop-types";
+import React from 'react';
 import Contact from "../Contact/Contact";
+import PropTypes from "prop-types";
 
-const AddContact = ({ contacts, changeId }) => (
-    <>
+
+const AddContacts = ({contacts, onDelete}) => (
+
         <ul>
-            {contacts.map(({ id, name, number }) => (
-                <Contact
-                key={id}
-                name={name}
-                id={id}
-                number={number}
-                changeId={changeId}
-                />
-            ))}
+            {contacts.map(({name, number, id}) => (
+                <li key={id}>
+                    <Contact name={name} number={number}/>
+                    <button onClick={() => onDelete(id)}>Удалить</button>
+                </li>))}
         </ul>
-    </>);
 
-export default AddContact;
+    )
+;
 
-AddContact.propTypes = {
+AddContacts.propTypes = {
     contacts: PropTypes.arrayOf(
-      shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      })
+        PropTypes.shape({
+            id:PropTypes.string.isRequired,
+            name:PropTypes.string.isRequired,
+            number:PropTypes.string.isRequired
+        })
     ),
-  
-    changeId: PropTypes.func,
-  };
+    onDelete: PropTypes.func.isRequired
+}
+
+
+export default AddContacts;

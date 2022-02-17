@@ -8,5 +8,5 @@ export default function useLocalStorage (key, defaultValue) {
 useEffect(() => {
     window.localStorage.setItem(key, JSON.stringify(state));
 }, [key, state])
-return [state, setState]
+  return [state, setState]
 };
